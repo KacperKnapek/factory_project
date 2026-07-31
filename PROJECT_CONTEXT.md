@@ -23,6 +23,15 @@ Analiza i modelowanie przepływu zleceń produkcyjnych w fabryce obuwia. Główn
 - `Plan` nie jest liczbą par (wartości kilka tysięcy vs. rozmiarówka ~8 par) – prawdopodobnie pozycja w planie
 - `Wstrzymane` wypełnione dla większości rekordów, ale mało zleceń ma status wstrzymania
 - Szczegółowe etapy zaznaczają się od marca 2017 – wcześniejsze dane mogą być niekompletne
+- Daty zostały rozpoznane jako timestampy w formacie `MM/DD/YY HH:MM:SS`; braki są przechowywane jako `NaT`
+- Kontrola kolejności wykazała przypadki, w których `termin zam` jest wcześniejszy niż `data zam`; kolumny terminów nie powinny być bezpośrednio traktowane jako kolejne etapy procesu
+
+## Wykonane transformacje w EDA
+- Usunięto kolumny całkowicie puste
+- Dodano `czas produkcji` jako różnicę `zdane na magazyn - rozkrój`
+- Zmieniono nazwę technicznego pola `pole1` na `komplety szwalnia`
+- Dodano `liczba par` jako sumę kolumn rozmiarowych w wierszu i ustawiono typ `int`
+- Po utworzeniu `liczba par` usunięto kolumny rozmiarowe `size_cols`
 
 ## Główne pytania
 1. Jakie ścieżki przechodzą zlecenia? Jakie warianty są najczęstsze?
